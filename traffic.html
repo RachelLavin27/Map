@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Traffic layer</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+
+        var myLatLng = {lat: 53.339876, lng: -6.295047}
+        var myLatLng2 = {lat: 53.389382, lng: -6.368614}
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: myLatLng
+        });
+
+        var trafficLayer = new google.maps.TrafficLayer();
+        trafficLayer.setMap(map);
+
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'St. James Hospital'
+        });  marker.addListener('click', function() {
+           infowindow.open(map, marker);
+         });
+
+
+
+        var marker = new google.maps.Marker({
+          position: myLatLng2,
+          map: map,
+          title: 'Connolly Hospital'
+        });  marker.addListener('click', function() {
+           infowindow.open(map, marker);
+         });
+
+      }
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaodRVwKOBEJvyTsj_355INJ9WoPc8ZtY&callback=initMap">
+    </script>
+  </body>
+</html>
